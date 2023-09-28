@@ -1,6 +1,9 @@
 #include <SDL.h>
-#include "Board.h"
 #include <iostream>
+
+#include "Board.h"
+#include "Renderer.h"
+
 
 // Define screen dimensions
 const int SCREEN_WIDTH = 640;
@@ -19,27 +22,7 @@ const int BOARD_OFFSET_X = BOARD_OFFSET_MIDDLE_X;
 const int BOARD_OFFSET_Y = BOARD_OFFSET_MIDDLE_Y;
 
 
-
 Board gameBoard;
-
-void renderBoard(SDL_Renderer* renderer, const Board& board, int boardOffsetX, int boardOffsetY, int cellSize, int cellSpacing = 0) {
-	for (int x = 0; x < BOARD_WIDTH; x++) {
-		for (int y = 0; y < BOARD_HEIGHT; y++) {
-			int cellValue = board.getCell(x, y);
-
-			if (cellValue == 0) {
-				// Set the color and render based on the cellValue
-				SDL_SetRenderDrawColor(renderer, 211, 211, 211, 211);  // Example color for non-zero value
-
-				int renderX = boardOffsetX + x * (cellSize + cellSpacing);
-				int renderY = boardOffsetY + y * (cellSize + cellSpacing);
-
-				SDL_Rect cellRect = { renderX, renderY, cellSize, cellSize };
-				SDL_RenderFillRect(renderer, &cellRect);
-			}
-		}
-	}
-}
 
 
 int main(int argc, char* argv[]) {
@@ -75,6 +58,8 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	Renderer fRenderer(renderer);
+
 	bool quit = false;
 	SDL_Event e;
 
@@ -95,7 +80,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer);
 
 		// TODO: Draw game board, tetrominoes, score, etc.
-		renderBoard(renderer, gameBoard, BOARD_OFFSET_X, BOARD_OFFSET_Y, CELL_SIZE, CELL_SPACING);
+		fRenderer.renderBoard(gameBoard, BOARD_OFFSET_X, BOARD_OFFSET_Y, CELL_SIZE, CELL_SPACING);
 
 		SDL_RenderPresent(renderer);
 	}
