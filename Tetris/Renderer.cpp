@@ -9,6 +9,7 @@ Renderer::Renderer(SDL_Renderer* sdlRenderer): mSdlRenderer(sdlRenderer) {
 
 
 // Render Mark of Board
+// TODO: Fix mark so it grows in thickness outside, no inside
 void Renderer::renderBoardMarc() {
 	// Setting the color
 	SDL_SetRenderDrawColor(mSdlRenderer, 130, 130, 170, 255);
@@ -42,7 +43,7 @@ void Renderer::renderBoard(const Board& board) {
 		for (int y = 0; y < BOARD_HEIGHT; y++) {
 			int cellValue = board.getCell(x, y);
 
-			if (cellValue != 0) {
+			if (cellValue == 0) {
 				// Set the color and render based on the cellValue
 				SDL_SetRenderDrawColor(mSdlRenderer, 211, 211, 211, 211);
 
@@ -57,11 +58,14 @@ void Renderer::renderBoard(const Board& board) {
 }
 
 void Renderer::renderTetromino(const Tetromino& tetromino) {
+	std::cout << tetromino.getRot() << std::endl;
+
 	for (int x = 0; x < TETROMINO_WIDTH; x++) {
 		for (int y = 0; y < TETROMINO_HEIGHT; y++) {
-			int cellValue = tetromino.getTetrominoCell(x, y);
-			std::cout << x << ", " << y << std::endl;
-			std::cout << cellValue << std::endl;
+			int cellValue = tetromino.getCell(x, y);
+			// Code for debugging
+			//std::cout << x << ", " << y << std::endl;
+			//std::cout << cellValue << std::endl;
 
 			if (cellValue != 0) {
 				// Set the color and render based on the cellValue

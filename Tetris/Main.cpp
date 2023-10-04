@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <iostream>
+#include <cassert>
 
 #include "Board.h"
 #include "Tetromino.h"
@@ -47,9 +48,10 @@ int main(int argc, char* argv[]) {
 	bool quit = false;
 	SDL_Event e;
 
-	//We create a piece for game
-	//type, rot
-	Tetromino gameTetromino(0);
+	// We create a piece for game
+	int gameTetrominoType = 1;
+	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
+	Tetromino gameTetromino(gameTetrominoType);
 
 	
 	while (!quit) {
@@ -58,6 +60,7 @@ int main(int argc, char* argv[]) {
 		// Check for keyboard events
 		// TODO: Should we separate the update game and event handling? Two whiles?
 		while (SDL_PollEvent(&e) != 0) {
+			// TODO: Fix escape key
 			if (e.type == SDL_QUIT) {
 				quit = true;
 			}
@@ -83,7 +86,6 @@ int main(int argc, char* argv[]) {
 		// Update game state
 		// TODO: Move tetrominoes, check for collisions, line clears, etc.
 		
-
 		// Render
 		SDL_SetRenderDrawColor(renderer, 180, 160, 250, 255);
 		SDL_RenderClear(renderer);
