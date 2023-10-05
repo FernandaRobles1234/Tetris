@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <cassert>
+#include <random>
 
 #include "Board.h"
 #include "Tetromino.h"
@@ -49,8 +50,12 @@ int main(int argc, char* argv[]) {
 	bool quit = false;
 	SDL_Event e;
 
+	//We create a random generator
+	std::default_random_engine generator(static_cast<long unsigned int>(time(0)));
+	std::uniform_int_distribution<int> distribution(0, TETROMINO_TYPE);
+
 	// We create a piece for game
-	int gameTetrominoType = 1;
+	int gameTetrominoType = distribution(generator);
 	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
 	Tetromino gameTetromino(gameTetrominoType);
 	

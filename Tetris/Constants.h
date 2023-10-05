@@ -25,7 +25,7 @@ constexpr int BOARD_MARC_THICK = 3;
 
 
 // Tetrominos characteristics
-constexpr int TETROMINO_TYPE = 3;
+constexpr int TETROMINO_TYPE = 7;
 constexpr int TETROMINO_ROT = 4;
 constexpr int TETROMINO_HEIGHT = 5;
 constexpr int TETROMINO_WIDTH = 5;
