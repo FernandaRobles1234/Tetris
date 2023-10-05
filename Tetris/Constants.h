@@ -3,7 +3,6 @@
 // Define board size
 constexpr int BOARD_WIDTH = 10;
 constexpr int BOARD_HEIGHT = 20;
-constexpr int BOARD_MARC_PADDING = 1;
 
 // Define cell size
 constexpr int CELL_SIZE = 15;
@@ -18,8 +17,8 @@ constexpr int BOARD_OFFSET_MIDDLE_X = (SCREEN_WIDTH / 2) - (BOARD_WIDTH * (CELL_
 constexpr int BOARD_OFFSET_MIDDLE_Y = (SCREEN_HEIGHT / 2) - (BOARD_HEIGHT * (CELL_SIZE + CELL_SPACING)) / 2;
 
 // Define board position considering mark
-constexpr int BOARD_OFFSET_X = BOARD_OFFSET_MIDDLE_X - (BOARD_MARC_PADDING * (CELL_SIZE + CELL_SPACING));
-constexpr int BOARD_OFFSET_Y = BOARD_OFFSET_MIDDLE_Y - (BOARD_MARC_PADDING * (CELL_SIZE + CELL_SPACING));
+constexpr int BOARD_OFFSET_X = BOARD_OFFSET_MIDDLE_X;
+constexpr int BOARD_OFFSET_Y = BOARD_OFFSET_MIDDLE_Y;
 
 // Define board's mark
 constexpr int BOARD_MARC_THICK = 3;

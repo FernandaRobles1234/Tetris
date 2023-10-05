@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
 	SDL_Event e;
 
 	// We create a piece for game
-	int gameTetrominoType = 1;
+	int gameTetrominoType = 0;
 	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
 	Tetromino gameTetromino(gameTetrominoType);
 	
@@ -67,15 +67,19 @@ int main(int argc, char* argv[]) {
 			else if (e.type == SDL_KEYDOWN) {
 				switch (e.key.keysym.sym) {
 				case SDLK_UP:
+					gameTetromino.collidesWith(gameBoard);
 					gameTetromino.rotate();
 					break;
 				case SDLK_DOWN:
+					gameTetromino.collidesWith(gameBoard);
 					gameTetromino.moveDown();
 					break;
 				case SDLK_LEFT:
+					gameTetromino.collidesWith(gameBoard);
 					gameTetromino.moveLeft();
 					break;
 				case SDLK_RIGHT:
+					gameTetromino.collidesWith(gameBoard);
 					gameTetromino.moveRight();
 					break;
 				}

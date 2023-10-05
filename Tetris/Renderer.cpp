@@ -82,8 +82,8 @@ void Renderer::renderTetromino(const Tetromino& tetromino) {
 				// Set the color and render based on the cellValue
 				SDL_SetRenderDrawColor(mSdlRenderer, 173, 216, 230, 255);
 
-				int renderRelativeX = BOARD_OFFSET_X + BOARD_MARC_PADDING * (CELL_SIZE + CELL_SPACING) + (x + tetromino.getPosX()) * (CELL_SIZE + CELL_SPACING);
-				int renderRelativeY = BOARD_OFFSET_Y + BOARD_MARC_PADDING * (CELL_SIZE + CELL_SPACING) + (y + tetromino.getPosY()) * (CELL_SIZE + CELL_SPACING);
+				int renderRelativeX = BOARD_OFFSET_X + (x + tetromino.getPosX()) * (CELL_SIZE + CELL_SPACING);
+				int renderRelativeY = BOARD_OFFSET_Y + (y + tetromino.getPosY()) * (CELL_SIZE + CELL_SPACING);
 
 				SDL_Rect cellRect = { renderRelativeX, renderRelativeY, CELL_SIZE, CELL_SIZE };
 				SDL_RenderFillRect(mSdlRenderer, &cellRect);

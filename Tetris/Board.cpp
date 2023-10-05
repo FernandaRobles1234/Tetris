@@ -8,16 +8,9 @@ Board::Board() {
 void Board::initializeBoard() {
     for (int y = 0; y < mHeight; y++) {
         for (int x = 0; x < mWidth; x++) {
-            if ( x == 0 || y == 0 || x == mWidth -1 || y == mHeight - 1 ) {
-                mBoard[y][x] = 1;
-                //std::cout << 1;
-            }
-            else
-            {
-                mBoard[y][x] = 0;
-                //std::cout << 0;
-            }
-            
+           
+            mBoard[y][x] = 0;
+            //std::cout << 0;
         }
         //std::cout << std::endl;
     }

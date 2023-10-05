@@ -144,8 +144,7 @@ void Tetromino::rotate() {
 }
 
 bool Tetromino::collidesWith(const Board& board) const {
-
-
+	std::cout << board.getCell(this->getPosX(), this->getPosY()) << std::endl;
 
 	return false;
 }
