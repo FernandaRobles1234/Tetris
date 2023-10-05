@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
 	SDL_Event e;
 
 	// We create a piece for game
-	int gameTetrominoType = 0;
+	int gameTetrominoType = 1;
 	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
 	Tetromino gameTetromino(gameTetrominoType);
 	

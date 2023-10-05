@@ -12,13 +12,13 @@ public:
 	int mPosX;
 	int mPosY;
 	
-
 	const int getCell(int x, int y) const;
+	const int getCell(int x, int y, int rot) const;
 	const int getPosX() const { return mPosX; }
 	const int getPosY() const { return mPosY; }
 	const int getRot() const { return mRot; }
 
-	void rotate(const Board& board);
+	bool rotate(const Board& board);
 	bool moveRight(const Board& board);
 	bool moveLeft(const Board& board);
 	bool moveDown(const Board& board);
