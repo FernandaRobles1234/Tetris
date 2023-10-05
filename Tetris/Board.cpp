@@ -1,24 +1,41 @@
 #include "Board.h"
 
-
 Board::Board() {
     initializeBoard();
 }
 
-
-// Initialize all cells to 0 (empty).
+// Initialize all cells to 0 (empty) and initialize limit with 1
 void Board::initializeBoard() {
-    for (int y = 0; y < BOARD_HEIGHT; y++) {
-        for (int x = 0; x < BOARD_WIDTH; x++) {
-            mBoard[y][x] = 0;
+    for (int y = 0; y < mHeight; y++) {
+        for (int x = 0; x < mWidth; x++) {
+            if ( x == 0 || y == 0 || x == mWidth -1 || y == mHeight - 1 ) {
+                mBoard[y][x] = 1;
+                //std::cout << 1;
+            }
+            else
+            {
+                mBoard[y][x] = 0;
+                //std::cout << 0;
+            }
+            
         }
+        //std::cout << std::endl;
     }
+    //std::cout << std::endl;
 }
 
 // Board's cells getter
-int Board::getCell(int x, int y) const {
-    if (x >= 0 && x < BOARD_WIDTH && y >= 0 && y < BOARD_HEIGHT)
-        return mBoard[x][y];
+const int Board::getCell(int x, int y) const {
+    if (x >= 0 && x < mWidth && y >= 0 && y < mHeight)
+        return mBoard[y][x];
     else
         return -1;  // return a value indicating an invalid cell
+}
+
+const int Board::getWidth() const {
+    return mWidth;
+}
+
+const int Board::getHeight() const {
+    return mHeight;
 }

@@ -1,7 +1,9 @@
 #pragma once
 #include "Constants.h"
+#include "Board.h"
 
-class Tetromino {
+
+class Tetromino{
 public:
 	Tetromino(int type);
 
@@ -20,6 +22,8 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveDown();
+
+	bool collidesWith(const Board& board) const;
 
 private:
 	static const int mTetrominos[TETROMINO_TYPE][TETROMINO_ROT][TETROMINO_HEIGHT][TETROMINO_WIDTH];

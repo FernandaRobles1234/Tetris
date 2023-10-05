@@ -7,10 +7,6 @@
 #include "Renderer.h"
 #include "Constants.h"
 
-//Initialize Board
-// TODO: Should we initialize it here?
-Board gameBoard;
-
 int main(int argc, char* argv[]) {
 	// Initialization, Main Loop (with Event Handling, Update, and Render phases), and Cleanup.
 
@@ -33,7 +29,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-	// Create renderer
+	// Initialize renderer
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	if (!renderer) {
 		printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -41,9 +37,14 @@ int main(int argc, char* argv[]) {
 		SDL_Quit();
 		return 1;
 	}
-
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	
+	//Initialize game renderer
 	Renderer fRenderer(renderer);
+
+	//Initialize Board
+	// TODO: Should we initialize it here?
+	Board gameBoard;
 
 	bool quit = false;
 	SDL_Event e;
@@ -52,7 +53,6 @@ int main(int argc, char* argv[]) {
 	int gameTetrominoType = 1;
 	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
 	Tetromino gameTetromino(gameTetrominoType);
-
 	
 	while (!quit) {
 		

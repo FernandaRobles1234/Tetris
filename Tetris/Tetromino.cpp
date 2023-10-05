@@ -109,10 +109,10 @@ const int Tetromino::mTetrominosInitPos[TETROMINO_TYPE][DIM2] =
 	{2, -2}
 };
 
+//TODO: Should we initialize mRot with literal 0?
 Tetromino::Tetromino(int type): mType(type), mRot(0), mPosX(mTetrominosInitPos[mType][X]), mPosY(mTetrominosInitPos[mType][Y]) {
-	// TODO: Make constraints so we cant acces invalid data
+	// TODO: Make constraints so we cant acces invalid data (Aka. type outside range)
 	// TODO: Assertion or exception? When exception caught the SDL window crashes
-
 }
 
 const int Tetromino::getCell(int x, int y) const {
@@ -124,17 +124,28 @@ const int Tetromino::getCell(int x, int y) const {
 }
 
 void Tetromino::moveRight() {
+	//TODO: implement Collision detection?
 	mPosX++;
 }
 
 void Tetromino::moveLeft() {
+	//TODO: implement Collision detection?
 	mPosX--;
 }
 
 void Tetromino::moveDown() {
+	//TODO: implement Collision detection?
 	mPosY++;
 }
 
 void Tetromino::rotate() {
+	//TODO: implement Collision detection?
 	mRot = (mRot + 1) % TETROMINO_ROT;
+}
+
+bool Tetromino::collidesWith(const Board& board) const {
+
+
+
+	return false;
 }

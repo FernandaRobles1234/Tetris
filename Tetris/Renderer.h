@@ -1,5 +1,7 @@
 #pragma once
 #include <SDL.h>
+#include <iostream>
+
 #include "Board.h"
 #include "Tetromino.h"
 #include "Constants.h"
