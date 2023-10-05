@@ -110,7 +110,7 @@ const int Tetromino::mTetrominosInitPos[TETROMINO_TYPE][DIM2] =
 };
 
 //TODO: Should we initialize mRot with literal 0?
-Tetromino::Tetromino(int type): mType(type), mRot(0), mPosX(mTetrominosInitPos[mType][X]), mPosY(mTetrominosInitPos[mType][Y]) {
+Tetromino::Tetromino(int type): mType(type), mRot(0), mPosX(mTetrominosInitPos[mType][X]), mPosY(mTetrominosInitPos[mType][Y]){
 	// TODO: Make constraints so we cant acces invalid data (Aka. type outside range)
 	// TODO: Assertion or exception? When exception caught the SDL window crashes
 }
@@ -123,28 +123,57 @@ const int Tetromino::getCell(int x, int y) const {
 		return -1;  
 }
 
-void Tetromino::moveRight() {
-	//TODO: implement Collision detection?
+bool Tetromino::moveRight(const Board& board) {
+	int simulatedPosX = mPosX + 1;
+
+	// Collision detection
+	for (int y = 0; y < TETROMINO_HEIGHT; y++) {
+		for (int x = 0; x < TETROMINO_WIDTH; x++) {
+			
+			if ((this->getCell(x, y) != 0) && (board.getCell(simulatedPosX + x, this->getPosY() + y) != 0)) {
+				return false;
+			}
+		}
+	}
+
 	mPosX++;
+	return true;
 }
 
-void Tetromino::moveLeft() {
-	//TODO: implement Collision detection?
+bool Tetromino::moveLeft(const Board& board) {
+	int simulatedPosX = mPosX - 1;
+
+	// Collision detection
+	for (int y = 0; y < TETROMINO_HEIGHT; y++) {
+		for (int x = 0; x < TETROMINO_WIDTH; x++) {
+
+			if ((this->getCell(x, y) != 0) && (board.getCell(simulatedPosX + x, this->getPosY() + y) != 0)) {
+				return false;
+			}
+		}
+	}
+
 	mPosX--;
+	return true;
 }
 
-void Tetromino::moveDown() {
-	//TODO: implement Collision detection?
+bool Tetromino::moveDown(const Board& board) {
+	int simulatedPosY = mPosY + 1;
+
+	// Collision detection
+	for (int y = 0; y < TETROMINO_HEIGHT; y++) {
+		for (int x = 0; x < TETROMINO_WIDTH; x++) {
+
+			if ((this->getCell(x, y) != 0) && (board.getCell(this->getPosX() + x, simulatedPosY + y) != 0)) {
+				return false;
+			}
+		}
+	}
+
 	mPosY++;
+	return true;
 }
 
-void Tetromino::rotate() {
-	//TODO: implement Collision detection?
+void Tetromino::rotate(const Board& board) {
 	mRot = (mRot + 1) % TETROMINO_ROT;
-}
-
-bool Tetromino::collidesWith(const Board& board) const {
-	std::cout << board.getCell(this->getPosX(), this->getPosY()) << std::endl;
-
-	return false;
 }

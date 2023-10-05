@@ -18,12 +18,10 @@ public:
 	const int getPosY() const { return mPosY; }
 	const int getRot() const { return mRot; }
 
-	void rotate();
-	void moveRight();
-	void moveLeft();
-	void moveDown();
-
-	bool collidesWith(const Board& board) const;
+	void rotate(const Board& board);
+	bool moveRight(const Board& board);
+	bool moveLeft(const Board& board);
+	bool moveDown(const Board& board);
 
 private:
 	static const int mTetrominos[TETROMINO_TYPE][TETROMINO_ROT][TETROMINO_HEIGHT][TETROMINO_WIDTH];

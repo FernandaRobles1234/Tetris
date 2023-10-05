@@ -67,20 +67,24 @@ int main(int argc, char* argv[]) {
 			else if (e.type == SDL_KEYDOWN) {
 				switch (e.key.keysym.sym) {
 				case SDLK_UP:
-					gameTetromino.collidesWith(gameBoard);
-					gameTetromino.rotate();
+					
+					gameTetromino.rotate(gameBoard);
+					
 					break;
 				case SDLK_DOWN:
-					gameTetromino.collidesWith(gameBoard);
-					gameTetromino.moveDown();
+					
+					gameTetromino.moveDown(gameBoard);
+					
 					break;
 				case SDLK_LEFT:
-					gameTetromino.collidesWith(gameBoard);
-					gameTetromino.moveLeft();
+					
+					gameTetromino.moveLeft(gameBoard);
+					
 					break;
 				case SDLK_RIGHT:
-					gameTetromino.collidesWith(gameBoard);
-					gameTetromino.moveRight();
+					
+					gameTetromino.moveRight(gameBoard);
+					
 					break;
 				}
 			}
