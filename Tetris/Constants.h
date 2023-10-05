@@ -20,7 +20,7 @@ constexpr int BOARD_OFFSET_X = BOARD_OFFSET_MIDDLE_X;
 constexpr int BOARD_OFFSET_Y = BOARD_OFFSET_MIDDLE_Y;
 
 // Define board position
-constexpr int BOARD_MARC_THICK = 1;
+constexpr int BOARD_MARC_THICK = 3;
 
 // Tetrominos characteristics
 constexpr int TETROMINO_TYPE = 3;

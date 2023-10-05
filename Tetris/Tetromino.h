@@ -20,7 +20,6 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveDown();
-	bool isPosValid();
 
 private:
 	static const int mTetrominos[TETROMINO_TYPE][TETROMINO_ROT][TETROMINO_HEIGHT][TETROMINO_WIDTH];

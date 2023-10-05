@@ -138,7 +138,3 @@ void Tetromino::moveDown() {
 void Tetromino::rotate() {
 	mRot = (mRot + 1) % TETROMINO_ROT;
 }
-
-bool Tetromino::isPosValid() {
-	return false;
-}
