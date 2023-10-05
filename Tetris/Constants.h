@@ -23,7 +23,7 @@ constexpr int BOARD_OFFSET_Y = BOARD_OFFSET_MIDDLE_Y;
 constexpr int BOARD_MARC_THICK = 1;
 
 // Tetrominos characteristics
-constexpr int TETROMINO_TYPE = 2;
+constexpr int TETROMINO_TYPE = 3;
 constexpr int TETROMINO_ROT = 4;
 constexpr int TETROMINO_HEIGHT = 5;
 constexpr int TETROMINO_WIDTH = 5;

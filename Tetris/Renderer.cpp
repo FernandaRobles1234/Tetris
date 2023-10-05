@@ -16,24 +16,24 @@ void Renderer::renderBoardMarc() {
 
 	SDL_Rect rect;
 	int x = BOARD_OFFSET_X - CELL_SPACING;  // X position
-	int y = BOARD_OFFSET_Y - CELL_SPACING;  // Y position
+	int y = BOARD_OFFSET_Y - CELL_SPACING ;  // Y position
 	int w = BOARD_WIDTH * (CELL_SIZE + CELL_SPACING) + CELL_SPACING;  // Width
 	int h = BOARD_HEIGHT * (CELL_SIZE + CELL_SPACING) + CELL_SPACING;  // Height
 
 	// Top line
-	SDL_Rect top = { x, y, w, BOARD_MARC_THICK };
+	SDL_Rect top = { x - BOARD_MARC_THICK, y - BOARD_MARC_THICK, w + BOARD_MARC_THICK*2, BOARD_MARC_THICK };
 	SDL_RenderFillRect(mSdlRenderer, &top);
 
 	// Bottom line
-	SDL_Rect bottom = { x, y + h - BOARD_MARC_THICK, w, BOARD_MARC_THICK };
+	SDL_Rect bottom = { x - BOARD_MARC_THICK, y + h, w + BOARD_MARC_THICK * 2, BOARD_MARC_THICK };
 	SDL_RenderFillRect(mSdlRenderer, &bottom);
 
 	// Left line
-	SDL_Rect left = { x, y, BOARD_MARC_THICK, h };
+	SDL_Rect left = { x - BOARD_MARC_THICK ,y , BOARD_MARC_THICK, h };
 	SDL_RenderFillRect(mSdlRenderer, &left);
 
 	// Right line
-	SDL_Rect right = { x + w - BOARD_MARC_THICK, y, BOARD_MARC_THICK, h};
+	SDL_Rect right = { x + w, y, BOARD_MARC_THICK, h };
 	SDL_RenderFillRect(mSdlRenderer, &right);
 
 }
@@ -45,7 +45,7 @@ void Renderer::renderBoard(const Board& board) {
 
 			if (cellValue == 0) {
 				// Set the color and render based on the cellValue
-				SDL_SetRenderDrawColor(mSdlRenderer, 211, 211, 211, 211);
+				SDL_SetRenderDrawColor(mSdlRenderer, 200, 200, 255, 255);
 
 				int renderX = BOARD_OFFSET_X + x * (CELL_SIZE + CELL_SPACING);
 				int renderY = BOARD_OFFSET_Y + y * (CELL_SIZE + CELL_SPACING);
