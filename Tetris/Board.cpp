@@ -32,3 +32,10 @@ const int Board::getWidth() const {
 const int Board::getHeight() const {
     return mHeight;
 }
+
+void Board::setCell(int x, int y, int newVal) {
+    if (x >= 0 && x < mWidth && y >= 0 && y < mHeight)
+        mBoard[y][x] = newVal;
+
+    // TODO: What to do in case of invalid value?
+}

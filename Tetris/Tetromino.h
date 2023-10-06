@@ -16,6 +16,8 @@ public:
 	int mRot;
 	int mPosX;
 	int mPosY;
+
+	bool mBlockMove= false;
 	
 	const int getCell(int x, int y) const;
 	const int getCell(int x, int y, int rot) const;

@@ -11,6 +11,9 @@ public:
 	const int getWidth() const;
 	const int getHeight() const;
 
+	void setCell(int x, int y, int newVal);
+
+
 private:
 	static const int mHeight = BOARD_HEIGHT;
 	static const int mWidth = BOARD_WIDTH;

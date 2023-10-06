@@ -239,7 +239,7 @@ const int Tetromino::mTetrominosInitPos[TETROMINO_TYPE][DIM2] =
 	//L
 	{2, -1},
 	//L mirrored
-	{1, -2},
+	{3, -2},
 	//s
 	{2, -1},
 	//s mirrored
@@ -258,7 +258,7 @@ Tetromino::Tetromino(): mRot(0) {
 	// TODO: Make constraints so we cant acces invalid data (Aka. type outside range)
 	// TODO: Assertion or exception? When exception caught the SDL window crashes
 	std::default_random_engine generator(static_cast<long unsigned int>(time(0)));
-	std::uniform_int_distribution<int> distribution(0, TETROMINO_TYPE);
+	std::uniform_int_distribution<int> distribution(0, TETROMINO_TYPE-1);
 
 	int gameTetrominoType = distribution(generator);
 	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
@@ -326,6 +326,7 @@ bool Tetromino::moveDown(const Board& board) {
 		for (int x = 0; x < TETROMINO_WIDTH; x++) {
 
 			if ((this->getCell(x, y) != 0) && (board.getCell(this->getPosX() + x, simulatedPosY + y) != 0)) {
+				mBlockMove = true;
 				return false;
 			}
 		}

@@ -64,6 +64,7 @@ int main(int argc, char* argv[]) {
 	//Game loop
 	while (game.isRunning()) {
 		game.handleEvents();
+		game.update();
 		game.render();
 	}
 

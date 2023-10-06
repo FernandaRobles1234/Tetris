@@ -3,7 +3,7 @@
 Game::Game(SDL_Renderer* sdlRenderer): mSdlRenderer(sdlRenderer), mIsRunning(true) {
 }
 
-bool Game::isRunning() {
+const bool Game::isRunning() const {
 	return mIsRunning;
 }
 
@@ -96,9 +96,8 @@ void Game::renderBoard() {
                 SDL_Rect cellRect = { renderX, renderY, CELL_SIZE, CELL_SIZE };
                 SDL_RenderFillRect(mSdlRenderer, &cellRect);
             }
-            if (cellValue == 1) {
-                // Change to red for debugging
-                SDL_SetRenderDrawColor(mSdlRenderer, 255, 255, 255, 0);
+            else{
+                SDL_SetRenderDrawColor(mSdlRenderer, 64, 64, 100, 255);
 
                 int renderX = BOARD_OFFSET_X + x * (CELL_SIZE + CELL_SPACING);
                 int renderY = BOARD_OFFSET_Y + y * (CELL_SIZE + CELL_SPACING);
@@ -121,7 +120,7 @@ void Game::renderTetromino() {
 
             if (cellValue != 0) {
                 // Set the color
-                SDL_SetRenderDrawColor(mSdlRenderer, 173, 216, 230, 255);
+                SDL_SetRenderDrawColor(mSdlRenderer, 173, 216, 255, 255);
 
                 int renderRelativeX = BOARD_OFFSET_X + (x + mTetromino.getPosX()) * (CELL_SIZE + CELL_SPACING);
                 int renderRelativeY = BOARD_OFFSET_Y + (y + mTetromino.getPosY()) * (CELL_SIZE + CELL_SPACING);
@@ -131,4 +130,42 @@ void Game::renderTetromino() {
             }
         }
     }
+}
+
+//Update
+void Game::update() {
+    updateAutomaticFall();
+
+    if (mTetromino.mBlockMove) {
+        merge();
+    }
+}
+
+void Game::updateAutomaticFall() {
+    // Check for automatic fall
+    Uint32 currentTime = SDL_GetTicks();
+    if (currentTime - mLastFallTime > mFallInterval) {
+        mTetromino.moveDown(mBoard);
+        mLastFallTime = currentTime;  // Reset the timer
+    }
+}
+
+void Game::merge() {
+    for (int y = 0; y < TETROMINO_HEIGHT; y++) {
+        for (int x = 0; x < TETROMINO_WIDTH; x++) {
+            int tetrominoValue = mTetromino.getCell(x, y);
+
+            //Only write the figure
+            if (tetrominoValue != 0){
+                int globalX = mTetromino.getPosX() + x;
+                int globalY = mTetromino.getPosY() + y;
+
+
+                mBoard.setCell(globalX, globalY, tetrominoValue);
+            }
+        }
+    }
+
+    // Spawn a new Tetromino
+    mTetromino = Tetromino();
 }
