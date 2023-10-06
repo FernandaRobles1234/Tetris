@@ -19,12 +19,23 @@ void Game::handleEvents() {
         
         // Handle key presses here
         case SDL_KEYDOWN:
-            // Key is ESC
-            if (e.key.keysym.sym == SDLK_ESCAPE) {  
+            switch (e.key.keysym.sym) {
+            case SDLK_ESCAPE:
                 mIsRunning = false;
+                break;
+            case SDLK_UP:
+                mTetromino.rotate(mBoard);
+                break;
+            case SDLK_DOWN:
+                mTetromino.moveDown(mBoard);
+                break;
+            case SDLK_LEFT:
+                mTetromino.moveLeft(mBoard);
+                break;
+            case SDLK_RIGHT:
+                mTetromino.moveRight(mBoard);
+                break;
             }
-            //TODO: Do I add collision checks here?
-
             break;
         }
     }
