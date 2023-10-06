@@ -13,6 +13,9 @@ public:
 
 	void setCell(int x, int y, int newVal);
 
+	void clearCompletedLines();
+	bool isFull();
+
 
 private:
 	static const int mHeight = BOARD_HEIGHT;

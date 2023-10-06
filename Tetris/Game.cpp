@@ -139,6 +139,12 @@ void Game::update() {
     if (mTetromino.mBlockMove) {
         merge();
     }
+
+    mBoard.clearCompletedLines();
+
+    if (mBoard.isFull()) {
+        mBoard = Board();
+    }
 }
 
 void Game::updateAutomaticFall() {
