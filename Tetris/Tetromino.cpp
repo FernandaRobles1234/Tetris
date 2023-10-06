@@ -241,11 +241,11 @@ const int Tetromino::mTetrominosInitPos[TETROMINO_TYPE][DIM2] =
 	//L mirrored
 	{1, -2},
 	//s
-	{1, -1},
+	{2, -1},
 	//s mirrored
-	{1, -2},
+	{2, -1},
 	//T
-	{1, -2}
+	{2, -2}
 };
 
 //TODO: Should we initialize mRot with literal 0?
