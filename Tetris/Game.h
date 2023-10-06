@@ -3,6 +3,9 @@
 #include <SDL.h>
 #include <iostream>
 
+#include "Constants.h"
+#include "Board.h"
+#include "Tetromino.h"
 
 class Game {
 public:
@@ -15,4 +18,11 @@ public:
 private:
 	SDL_Renderer* mSdlRenderer;
 	bool mIsRunning;
+	Board mBoard;
+	Tetromino mTetromino;
+	
+	void renderWindow();
+	void renderBoardMark();
+	void renderBoard();
+	void renderTetromino();
 };

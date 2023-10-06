@@ -1,4 +1,8 @@
 #pragma once
+#include <random>
+#include <iostream>
+#include <assert.h>
+
 #include "Constants.h"
 #include "Board.h"
 
@@ -6,6 +10,7 @@
 class Tetromino{
 public:
 	Tetromino(int type);
+	Tetromino();
 
 	int mType;
 	int mRot;

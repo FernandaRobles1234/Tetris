@@ -1,5 +1,5 @@
 #include "Tetromino.h"
-#include <iostream>
+
 
 const int Tetromino::mTetrominos[TETROMINO_TYPE][TETROMINO_ROT][TETROMINO_HEIGHT][TETROMINO_WIDTH] =
 //Type
@@ -252,6 +252,20 @@ const int Tetromino::mTetrominosInitPos[TETROMINO_TYPE][DIM2] =
 Tetromino::Tetromino(int type): mType(type), mRot(0), mPosX(mTetrominosInitPos[mType][X]), mPosY(mTetrominosInitPos[mType][Y]){
 	// TODO: Make constraints so we cant acces invalid data (Aka. type outside range)
 	// TODO: Assertion or exception? When exception caught the SDL window crashes
+}
+
+Tetromino::Tetromino(): mRot(0) {
+	// TODO: Make constraints so we cant acces invalid data (Aka. type outside range)
+	// TODO: Assertion or exception? When exception caught the SDL window crashes
+	std::default_random_engine generator(static_cast<long unsigned int>(time(0)));
+	std::uniform_int_distribution<int> distribution(0, TETROMINO_TYPE);
+
+	int gameTetrominoType = distribution(generator);
+	assert(gameTetrominoType >= 0 && gameTetrominoType < TETROMINO_TYPE);
+	mType= gameTetrominoType;
+
+	mPosX = mTetrominosInitPos[mType][X];
+	mPosY = mTetrominosInitPos[mType][Y];
 }
 
 const int Tetromino::getCell(int x, int y, int rot) const {
